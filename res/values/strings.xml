@@ -1874,6 +1874,8 @@
     <string name="gpu_info">GPU</string>
     <!-- About device screen, Cpu info. -->
     <string name="cpu_info">CPU</string>
+    <!-- About device screen, Chipset info -->
+    <string name="chipset_info">Chipset</string>
     <!-- About phone screen, Free memory info -->
     <string name="mem_info">Memory</string>
     <!-- About phone screen, status item label -->
@@ -4423,6 +4425,7 @@
     <string name="quick_links_title">Quick Links</string>
     <string name="rom_control_title">ROM Control</string>
     <string name="themes_title">Themes</string>
+    <string name="performance_title">Performance Control</string>
 
     <string name="mod_version">AOKP version</string>
     <string name="mod_version_default">Unknown</string>
@@ -4451,7 +4454,7 @@
     <string name="preview_country_title">Country</string>
     <string name="preview_carrier_title">Carrier</string>
 
-        <!-- Quiet hours #CM -->
+    <!-- Quiet hours #CM -->
     <string name="quiet_hours_title">Quiet hours</string>
     <string name="quiet_hours_summary">Configure the hours the device should be quiet</string>
     <string name="quiet_hours_enabled_title">Enable quiet hours</string>
@@ -4473,4 +4476,11 @@
     <string name="vibration_title">Phone vibration</string>
     <string name="link_volume_ringtones">Link volumes</string>
     <string name="link_volume_mutes">Link mute states</string>
+
+    <!-- AOKP specific sound settings
+    <string name="camera_sounds">Camera sounds</string> ** TODO ** -->
+    <string name="safe_headset_volume_title">Safe headset volume</string>
+
+    <!-- Hostname setting -->
+    <string name="device_hostname">Device hostname</string>
 </resources>
