@@ -1790,6 +1790,8 @@
     <string name="screensaver_settings_summary_sleep">While charging</string>
     <!-- Display settings screen, summary fragment for screen saver options, activated when docked  -->
     <string name="screensaver_settings_summary_dock">While docked</string>
+    <!--  Display settings screen, summary fragment for screen saver options, activate when wirelessly charging -->
+    <string name="screensaver_settings_summary_wireless">While charging wirelessly</string>
     <!-- Display settings screen, summary for screen saver options, screen saver is turned off -->
     <string name="screensaver_settings_summary_off">Off</string>
     <!-- Dream settings screen, caption for when dreams are disabled -->
@@ -4484,6 +4486,9 @@
     <!-- AOKP specific sound settings
     <string name="camera_sounds">Camera sounds</string> ** TODO ** -->
     <string name="safe_headset_volume_title">Safe headset volume</string>
+
+    <string name="lockscreen_quick_unlock_control_title">Quick pin unlock</string>
+    <string name="lockscreen_quick_unlock_control_summary">Unlock password/pin lockscreen without pressing enter button</string>
 
     <!-- Hostname setting -->
     <string name="device_hostname">Device hostname</string>
