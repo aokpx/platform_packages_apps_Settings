@@ -4547,6 +4547,6 @@
     <string name="auto_brightness_menu_remove">Remove</string>
     <string name="ok">OK</string>
 
-    <!-- Permissions Manager -->
+    <!-- Permissions Management -->
     <string name="permissions_settings_title">Permissions</string>
 </resources>
