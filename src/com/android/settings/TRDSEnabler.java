@@ -103,6 +103,9 @@ public class TRDSEnabler implements CompoundButton.OnCheckedChangeListener {
                if(info.processName.equalsIgnoreCase("com.google.android.apps.plus")) {
                     am.killBackgroundProcesses("com.google.android.apps.plus");
                }
+               if(info.processName.equalsIgnoreCase("com.android.launcher")) {
+                    am.killBackgroundProcesses("com.android.launcher");
+               }
            }
     }
 
