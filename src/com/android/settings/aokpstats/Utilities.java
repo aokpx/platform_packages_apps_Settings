@@ -16,16 +16,15 @@
 
 package com.android.settings.aokpstats;
 
-import java.math.BigInteger;
-import java.net.NetworkInterface;
-import java.security.MessageDigest;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.content.Context;
 import android.os.SystemProperties;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+
+import java.math.BigInteger;
+import java.net.NetworkInterface;
+import java.security.MessageDigest;
 
 public class Utilities {
     public static String getUniqueID(Context ctx) {
@@ -40,66 +39,59 @@ public class Utilities {
         return device_id;
     }
 
-    public static String getCarrier(Context ctx) {
-        TelephonyManager tm = (TelephonyManager) ctx
-                .getSystemService(Context.TELEPHONY_SERVICE);
+    public static String getCarrier(Context context) {
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String carrier = tm.getNetworkOperatorName();
-        if ("".equals(carrier)) {
+        if (TextUtils.isEmpty(carrier)) {
             carrier = "Unknown";
         }
         return carrier;
     }
 
-    public static String getCarrierId(Context ctx) {
-        TelephonyManager tm = (TelephonyManager) ctx
-                .getSystemService(Context.TELEPHONY_SERVICE);
+    public static String getCarrierId(Context context) {
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String carrierId = tm.getNetworkOperator();
-        if ("".equals(carrierId)) {
+        if (TextUtils.isEmpty(carrierId)) {
             carrierId = "0";
         }
         return carrierId;
     }
 
-    public static String getCountryCode(Context ctx) {
-        TelephonyManager tm = (TelephonyManager) ctx
-                .getSystemService(Context.TELEPHONY_SERVICE);
+    public static String getCountryCode(Context context) {
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String countryCode = tm.getNetworkCountryIso();
-        if (countryCode.equals("")) {
+        if (TextUtils.isEmpty(countryCode)) {
             countryCode = "Unknown";
         }
         return countryCode;
     }
 
     public static String getDevice() {
-        return SystemProperties.get("ro.product.device");
+        String device = SystemProperties.get("ro.aokp.device");
+        return device == null ? SystemProperties.get("ro.product.device") : device;
     }
 
     public static String getModVersion() {
-        String aokp_ver = SystemProperties.get("ro.aokp.version");
-        if (aokp_ver != null) {
-            Pattern pattern = Pattern.compile("^(aokp_)[a-z0-9]*_((jb-mr1)|(nightly))?[-_]?(([0-9]+-[0-9]+-[0-9]+)|((build|milestone)-[0-9]+))$");
-            Matcher matcher = pattern.matcher(aokp_ver);
-            if (matcher.find()) {
-                String[] splitted = aokp_ver.split("_");
-                String ver = splitted[splitted.length-2].concat("_").concat(splitted[splitted.length-1]);
-                return ver;
-            } else {
-                return "KANG";
-            }
-        }
-        else {
+        String version = SystemProperties.get("ro.aokp.version");
+        String branch = SystemProperties.get("ro.aokp.branch");
+        if (version == null || branch == null || !version.startsWith("aokp")) {
             return "KANG";
+        } else {
+            String[] splitVer = version.split("_");
+            if (version.contains("milestone")) {
+                return branch + "_" + splitVer[3]; // exact milestone version
+            } else {
+                return branch + "_" + splitVer[2]; // nightly || unofficial
+            }
         }
     }
 
     public static String digest(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            return new BigInteger(1, md.digest(input.getBytes())).toString(16)
-                    .toUpperCase();
+            return new BigInteger(1, md.digest(input.getBytes())).toString(16).toUpperCase();
         } catch (Exception e) {
             return null;
         }
     }
 }
-
